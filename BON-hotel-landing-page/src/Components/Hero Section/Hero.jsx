@@ -3,7 +3,7 @@ import ReservationSection from "./ReservationSection";
 
 const Hero = () => {
   return (
-    <section className="relative">
+    <section className="relative mb-10 h-full">
       <ReservationSection />
       <section className="hero-section h-screen w-full bg-heroImg bg-center bg-cover flex items-center justify-center flex-col gap-y-6">
         <div className="heading">
