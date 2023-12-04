@@ -1,12 +1,18 @@
+import { useState } from 'react'
 import logo from '../../assets/logo.png'
 
 const Header = () => {
+    const [searchInput, setSearchInput] = useState(false);
+    const handleSearchInput = () => {
+        setSearchInput((prev) => !prev)
+        console.log(searchInput)
+    }
   return (
     <header className='flex flex-col items-center gap-y-4 mt-8 h-full'>
         <div className="logo">
             <img src={logo} alt="" />
         </div>
-        <div className="nav flex gap-x-4 items-center">
+        <div className="nav flex gap-x-4 items-center justify-between">
             <nav>
                 <ul className='flex gap-x-4'>
                     <li className='text-fontColor font-medium'>Our Hotel</li>
@@ -15,8 +21,9 @@ const Header = () => {
                     <li className='text-fontColor font-medium'>Contact Us</li>
                 </ul>
             </nav>
-            <div className="search">
-                <div className="search-icon p-2 border-2 rounded-full">
+            <div className={` search rounded-full flex basis-auto ${searchInput ? 'border-none' : 'border-2'} items-center transition-all ease-linear ${searchInput ? 'w-0' : 'w-72'}`}>
+                <input type="text" className='mx-2 focus:outline-none w-full bg-transparent h-full' placeholder='search...'/>
+                <div className={`search-icon p-2 ${searchInput ? 'border-2' : 'border-r-2'} rounded-full cursor-pointer`} onClick={handleSearchInput}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                     <g clipPath="url(#clip0_539_774)">
                         <path fillRule="evenodd" clipRule="evenodd" d="M10.442 10.442C10.5349 10.349 10.6452 10.2752 10.7666 10.2249C10.888 10.1746 11.0181 10.1487 11.1495 10.1487C11.2809 10.1487 11.411 10.1746 11.5324 10.2249C11.6538 10.2752 11.7641 10.349 11.857 10.442L15.707 14.292C15.8946 14.4795 16.0001 14.7338 16.0002 14.9991C16.0003 15.2644 15.895 15.5188 15.7075 15.7065C15.52 15.8941 15.2656 15.9996 15.0004 15.9997C14.7351 15.9998 14.4806 15.8945 14.293 15.707L10.443 11.857C10.35 11.7641 10.2763 11.6538 10.2259 11.5324C10.1756 11.411 10.1497 11.2809 10.1497 11.1495C10.1497 11.0181 10.1756 10.8879 10.2259 10.7665C10.2763 10.6451 10.35 10.5348 10.443 10.442H10.442Z" fill="#DFAA5B"/>

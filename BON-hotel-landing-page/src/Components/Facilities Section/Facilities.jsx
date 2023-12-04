@@ -3,7 +3,7 @@
 const Facilities = () => {
   return (
     <div className="">
-        <div className="absolute w-11/12 left-1/2 -translate-x-1/2 -bottom-16 flex flex-col p-12 items-center rounded-xl bg-white gap-y-6">
+        <div className="absolute w-5/6 left-1/2 -translate-x-1/2 -bottom-16 flex flex-col p-8 items-center rounded-xl bg-white gap-y-6">
             <h2 className="text-3xl text-[#957554] font-medium mb-4">Facilities</h2>
             <div className="facilities flex justify-evenly w-full">
                 <div className="Kitchen">

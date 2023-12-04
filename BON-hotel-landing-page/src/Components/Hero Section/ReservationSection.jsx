@@ -1,12 +1,18 @@
+import { useState } from "react";
 import Selector from "./Selector"
+import { Country } from 'country-state-city'
 
 
 const ReservationSection = () => {
+    const citiesData = Country.getAllCountries();
+    const [city, setCity] = useState(citiesData[0]);
+    console.log(citiesData);
+
   return (
     <section className="reservation-section bg-black p-6 flex justify-center mt-4 ">
         <div className="reservation-input-fields flex gap-x-4">
             <div className="select-city">
-                <Selector />
+                <Selector data={citiesData} selected={city} setSelected={setCity}/>
             </div>
             <div className="check-in">
                 <input type="date" className="appearance-none w-full text-gray-700 py-2 px-3 leading-tight focus:outline-none rounded-lg" />

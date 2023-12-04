@@ -1,24 +1,17 @@
 import { Fragment, useState } from 'react'
 import { Combobox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
+import PropTypes from 'prop-types'
 
-const people = [
-  { id: 1, name: 'Wade Cooper' },
-  { id: 2, name: 'Arlene Mccoy' },
-  { id: 3, name: 'Devon Webb' },
-  { id: 4, name: 'Tom Cook' },
-  { id: 5, name: 'Tanya Fox' },
-  { id: 6, name: 'Hellen Schmidt' },
-]
 
-function Selector() {
-  const [selected, setSelected] = useState(people[0])
+
+function Selector({ data, selected, setSelected }) {
   const [query, setQuery] = useState('')
 
   const filteredPeople =
     query === ''
-      ? people
-      : people.filter((person) =>
+      ? data
+      : data.filter((person) =>
           person.name
             .toLowerCase()
             .replace(/\s+/g, '')
@@ -31,13 +24,13 @@ function Selector() {
         <div className="mt-1">
           <div className="relative cursor-default overflow-hidden rounded-lg bg-white text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
             <Combobox.Input
-              className="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-400 focus:ring-0"
+              className="w-full border-none outline-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-400 focus:ring-0"
               displayValue={(person) => person.name}
               onChange={(event) => setQuery(event.target.value)}
             />
             <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
               <ChevronUpDownIcon
-                className="h-5 w-5 text-gray-400"
+                className="h-5 w-5 text-gray-400 hover:text-gray-500"
                 aria-hidden="true"
               />
             </Combobox.Button>
@@ -57,7 +50,7 @@ function Selector() {
               ) : (
                 filteredPeople.map((person) => (
                   <Combobox.Option
-                    key={person.id}
+                    key={person.index}
                     className={({ active }) =>
                       `relative cursor-default select-none py-2 pl-10 pr-4 ${
                         active ? 'bg-teal-600 text-white' : 'text-gray-900'
@@ -94,6 +87,12 @@ function Selector() {
       </Combobox>
     </div>
   )
+}
+
+Selector.propTypes = {
+  data: PropTypes.array,
+  selected: PropTypes.object,
+  setSelected: PropTypes.func,
 }
 
 export default Selector
